@@ -22,7 +22,7 @@ RUN chown -R user $GHOST_SOURCE/content
 RUN apt-get update && apt-get install -y git
 
 # Default environment variables
-ENV NODE_ENV production
+#ENV NODE_ENV production
 #ENV GHOST_URL http://my-ghost-blog.com
 
 # Port 2368 for ghost server
