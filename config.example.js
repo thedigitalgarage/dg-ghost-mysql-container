@@ -11,7 +11,7 @@ config = {
     // Configure your URL and mail settings here
     production: {
         // The url to use when providing links to the site, E.g. in RSS and email.
-        url: process.env.GHOST_URL,
+        url: 'http://' + process.env.GHOST_URL,
         forceAdminSSL: false,
         mail: {
             transport: 'SMTP',
