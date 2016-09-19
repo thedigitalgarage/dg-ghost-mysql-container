@@ -1,0 +1,124 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Template
+metadata:
+  annotations:
+    description: This is an instant-app for the Ghost Blogging platform.
+    iconClass: icon-nodejs
+    tags: instant-app,ghost
+  creationTimestamp: 2016-09-03T19:44:27Z
+  name: ghost
+  namespace: openshift
+  resourceVersion: "2579546"
+  selfLink: /oapi/v1/namespaces/openshift/templates/ghost
+  uid: d2fd3ee0-720e-11e6-b776-22ac95594225
+objects:
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    labels:
+      app: ghost
+    name: ${NAME}
+  spec:
+    replicas: 1
+    selector:
+      app: ghost
+      deploymentconfig: ${NAME}
+    strategy:
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        labels:
+          app: ghost
+          deploymentconfig: ${NAME}
+      spec:
+        containers:
+        - env:
+          - name: GHOST_URL
+            value: ${APPLICATION_DOMAIN}
+          - name: MAIL_HOST
+            value: ${MAIL_HOST}
+          - name: MAIL_FROM
+            value: ${MAIL_FROM}
+          image: docker.io/thedigitalgarage/ghost:latest
+          imagePullPolicy: Always
+          name: ghost
+          ports:
+          - containerPort: 2368
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          volumeMounts:
+          - mountPath: /var/lib/ghost
+            name: ghost-volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - emptyDir: {}
+          name: ghost-volume-1
+    triggers:
+    - type: ConfigChange
+  status: {}
+- apiVersion: v1
+  kind: Route
+  metadata:
+    labels:
+      app: ghost
+    name: ${NAME}
+  spec:
+    host: ${APPLICATION_DOMAIN}
+    port:
+      targetPort: 2368-tcp
+    to:
+      kind: Service
+      name: ${NAME}
+  status: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: ghost
+    name: ${NAME}
+  spec:
+    ports:
+    - name: 2368-tcp
+      port: 2368
+      protocol: TCP
+      targetPort: 2368
+    selector:
+      app: ghost
+      deploymentconfig: ${NAME}
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+parameters:
+- description: The name assigned to all of the frontend objects defined in this template.
+  displayName: Name
+  name: NAME
+  required: true
+  value: ghost
+- description: The exposed hostname that will route to the Ghost blogging service,
+    if left blank a value will be defaulted.
+  displayName: Application Hostname
+  name: APPLICATION_DOMAIN
+- description: The hostname to set up email server for the Ghost blogging service,
+    if left blank a value will be ignored.
+  displayName: Mail Hostname
+  name: MAIL_HOST
+- description: The sender to set up email server for the Ghost blogging service,
+    if left blank a value will be ignored.
+  displayName: Mail Sender
+  name: MAIL_FROM
