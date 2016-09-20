@@ -4,6 +4,7 @@
 
 var path = require('path'),
     config;
+var ghost_url = process.env.GHOST_URL?'http://' + process.env.GHOST_URL:'';
 
 config = {
     // ### Production
@@ -11,7 +12,7 @@ config = {
     // Configure your URL and mail settings here
     production: {
         // The url to use when providing links to the site, E.g. in RSS and email.
-        url: 'http://' + process.env.GHOST_URL,
+        url: ghost_url,
         forceAdminSSL: false,
         mail: {
             transport: 'SMTP',
