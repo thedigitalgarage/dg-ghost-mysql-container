@@ -164,9 +164,10 @@
       "value": "ghost"
     },
     {
-      "description": "The exposed hostname that will route to the Ghost blogging service, if left blank a value will be defaulted.",
+      "description": "The exposed hostname that will route to the Ghost blogging service (e.g, <project_name>-ghost.apps.thedigitalgarage.io).",
       "displayName": "Application Hostname",
-      "name": "APPLICATION_DOMAIN"
+      "name": "APPLICATION_DOMAIN",
+      "required": true
     },
     {
       "description": "The hostname to set up email server for the Ghost blogging service, if left blank a value will be ignored.",
