@@ -4,16 +4,14 @@
 
 var path = require('path'),
     config;
-var ghost_url = process.env.GHOST_URL ? 'http://' + process.env.GHOST_URL : 'http://my-ghost-blog.com';
-console.log(ghost_url);
-console.log(process.env.OPENSHIFT_APP_DNS);
+
 config = {
     // ### Production
     // When running Ghost in the wild, use the production environment
     // Configure your URL and mail settings here
     production: {
         // The url to use when providing links to the site, E.g. in RSS and email.
-        url: ghost_url,
+        url: 'http://' + process.env.GHOST_URL,
         forceAdminSSL: false,
         mail: {
             transport: 'SMTP',
@@ -43,7 +41,7 @@ config = {
 
     // ### Development **(default)**
     development: {
-        url: ghost_url,
+        url: 'http://' + process.env.GHOST_URL,
         mail: {
             transport: 'SMTP',
             options: {
