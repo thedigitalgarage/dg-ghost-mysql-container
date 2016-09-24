@@ -8,7 +8,7 @@ metadata:
   annotations:
     description: This is an instant-app for the Ghost Blogging platform.
     iconClass: icon-nodejs
-    tags: instant-app,ghost
+    tags: instant-app,ghost,nodejs
   creationTimestamp: 2016-09-03T19:44:27Z
   name: ghost
   namespace: openshift

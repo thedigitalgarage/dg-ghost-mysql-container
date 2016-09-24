@@ -5,14 +5,10 @@
     "annotations": {
       "description": "This is an instant-app for the Ghost Blogging platform.",
       "iconClass": "icon-nodejs",
-      "tags": "instant-app,ghost"
+      "tags": "instant-app,ghost,nodejs"
     },
     "name": "ghost",
-    "creationTimestamp": null,    
-    "namespace": "openshift",
-    "resourceVersion": "2579546",
-    "selfLink": "/oapi/v1/namespaces/openshift/templates/ghost",
-    "uid": "d2fd3ee0-720e-11e6-b776-22ac95594225"
+    "creationTimestamp": null
   },
   "objects": [
     {
