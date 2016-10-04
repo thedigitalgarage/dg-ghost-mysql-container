@@ -1,4 +1,4 @@
-FROM ptimof/ghost
+FROM ghost
 
 MAINTAINER David, david.dimas333@gmail.com
 
