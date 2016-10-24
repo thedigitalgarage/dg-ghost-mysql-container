@@ -1,5 +1,4 @@
-# dg-ghost
-A Digital Garage Docker image for the [Ghost](https://github.com/TryGhost/Ghost) blogging platform.
+# Digital Garage Docker image for the [Ghost](https://github.com/TryGhost/Ghost) blogging platform.
 This image is designed specifically to support the deployment of Ghost via Docker and Kubernetes via the Digital Garage. This image is a bit more configurable than the [official Ghost Docker image](https://registry.hub.docker.com/_/ghost/).
 
 # What is Ghost?
