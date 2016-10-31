@@ -17,6 +17,9 @@ COPY themes/webkid            content/themes/webkid
 
 # Fix ownership in src
 RUN chown -R user $GHOST_SOURCE/content
+RUN chgrp -R 0 $GHOST_SOURCE
+RUN chmod -R g+rw $GHOST_SOURCE
+RUN find $GHOST_SOURCE -type d -exec chmod g+x {} +
 
 # Install GIT
 RUN apt-get update && apt-get install -y git
