@@ -75,7 +75,7 @@
                 "volumeMounts": [
                   {
                     "mountPath": "/var/lib/ghost",
-                    "name": "ghost-volume-1"
+                    "name": "${NAME}-volume-1"
                   }
                 ]
               }
