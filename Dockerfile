@@ -1,6 +1,6 @@
 FROM ghost
 
-MAINTAINER David, david.dimas333@gmail.com
+MAINTAINER Edward, edsauarez89@gmail.com
 
 # Add in better default config
 ADD config.example.js config.example.js
@@ -23,6 +23,9 @@ RUN find $GHOST_SOURCE -type d -exec chmod g+x {} +
 
 # Install GIT
 RUN apt-get update && apt-get install -y git
+
+# Change to non-root user
+USER user
 
 # Default environment variables
 ENV NODE_ENV production
