@@ -1,6 +1,6 @@
 FROM ghost
 
-MAINTAINER Edward, edsauarez89@gmail.com
+MAINTAINER Edward, eddsuarez89@gmail.com
 
 # Add in better default config
 ADD config.example.js config.example.js
