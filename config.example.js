@@ -16,16 +16,23 @@ config = {
         mail: {
             transport: 'SMTP',
             options: {
-                host: process.env.MAIL_HOST
+                service: process.env.MAIL_SERVICE,
+                auth: {
+                    user: process.env.MAIL_ACCOUNT,
+                    pass: process.env.MAIL_PWD
+                }
             },
             from: process.env.MAIL_FROM
         },
         database: {
-            client: 'sqlite3',
+            client: 'mysql',
             connection: {
-                filename: path.join(__dirname, '/content/data/ghost.db')
-            },
-            debug: false
+                host     : process.env.MYSQL_SERVICE_HOST,
+                user     : process.env.MYSQL_USER,
+                password : process.env.MYSQL_PASSWORD,
+                database : process.env.MYSQL_DATABASE,
+                charset  : 'utf8'
+            }
         },
         server: {
             // Host to be passed to node's `net.Server#listen()`
@@ -82,13 +89,13 @@ config = {
         },
         mail: {
             transport: 'SMTP',
-	    options: {
-		service: 'Gmail',
-		auth: {
-		    user: process.env.GHOST_MAIL_ACCOUNT,
-		    pass: process.env.GHOST_MAIL_AUTH
-		}
-	    },
+      	    options: {
+          		service: 'Gmail',
+          		auth: {
+          		    user: process.env.GHOST_MAIL_ACCOUNT,
+          		    pass: process.env.GHOST_MAIL_AUTH
+          		}
+      	    },
             from: process.env.MAIL_FROM
         },
         server: {

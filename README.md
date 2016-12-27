@@ -1,4 +1,4 @@
-# Digital Garage Docker image for the [Ghost](https://github.com/TryGhost/Ghost) blogging platform.
+# Digital Garage Docker image for Ghost using MySQL.
 This image is designed specifically to support the deployment of Ghost via Docker and Kubernetes via the Digital Garage. This image is a bit more configurable than the [official Ghost Docker image](https://registry.hub.docker.com/_/ghost/).
 
 # What is Ghost?
@@ -29,7 +29,7 @@ This container uses the official Ghost image as it's base, has a more "environme
 ## Quickstart on via Docker
 
 ```
-docker run --name some-ghost -d thedigitalgarage/dg-ghost
+docker run --name some-ghost -d eddsuarez/ghost
 ```
 
 This will start Ghost in development mode listening on the default port of 2368.
@@ -38,18 +38,24 @@ If you'd like to be able to access the instance from the host without the
 contain's IP, standard port mappings can be used:
 
 ```
-docker run --name some-ghost -p 8080:2368 -d thedigitalgarage/dg-ghost
+docker run --name some-ghost -p 8080:2368 -d eddsuarez/ghost
 ```
 
 Then, access it via `http://localhost:8080` or `http://host-ip:8080` in a browser.
 
 ## Configuration
 
-There are three environment variables that can be configured:
+There are some environment variables that can be configured:
 
 * `GHOST_URL`: the URL of your blog (e.g., `http://www.example.com`)
+* `MAIL_SERVICE`: the type of smtp service (e.g., `Mailgun` or `Gmail`)
+* `MAIL_ACCOUNT`: user account for smtp credential
+* `MAIL_PWD`: user password for smtp credential
 * `MAIL_FROM`: the email of the blog installation (e.g., `'"Webmaster" <webmaster@example.com>'`)
-* `MAIL_HOST`: which host to send email to (e.g., `mail.example.com`)
+* `MYSQL_SERVICE_HOST`: name of mysql service
+* `MYSQL_USER`: username for mysql connection
+* `MYSQL_PASSWORD`: password for mysql connection
+* `MYSQL_DATABASE`: database name
 
 These can either be set on the Docker command line directly, or stored in a file and passed on
 the Docker command line:
@@ -68,8 +74,15 @@ environment file looks like this:
 # Place in /etc/default/ghost
 
 GHOST_URL=http://www.example.com
-MAIL_FROM='"Webmaster" <webmaster@example.com>'
-MAIL_HOST=mail.example.com
+MAIL_SERVICE=Gmail
+MAIL_ACCOUNT=example@gmail.com
+MAIL_PWD=example
+MAIL_FROM=example@gmail.com
+MYSQL_SERVICE_HOST=mysql
+MYSQL_USER=ghost
+MYSQL_PASSWORD=ghost
+MYSQL_DATABASE=ghost
+
 ```
 
 ## Running in production
