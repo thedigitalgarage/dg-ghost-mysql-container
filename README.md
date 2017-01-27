@@ -11,11 +11,8 @@ The first public version of Ghost, released October 2013, was financed by a succ
 ```
 wikipedia.org/wiki/Ghost_(blogging_platform)
 ```
+<a href="https://github.com/TryGhost/Ghost"><img src="https://cloud.githubusercontent.com/assets/120485/18661790/cf942eda-7f17-11e6-9eb6-9c65bfc2abd8.png" alt="Ghost" /></a>
 
-
-![ghost]
-
-[ghost]: ghost-logo.svg
 
 ## Why yet another container for Ghost?
 
