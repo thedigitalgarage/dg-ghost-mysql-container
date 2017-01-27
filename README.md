@@ -15,7 +15,7 @@ wikipedia.org/wiki/Ghost_(blogging_platform)
 
 ![ghost]
 
-[ghost]: https://ghost.org/assets/logos-f93942864f8c9f4a0a9b0ecd6f7f055c.png
+[ghost]: ghost-logo.svg
 
 ## Why yet another container for Ghost?
 
