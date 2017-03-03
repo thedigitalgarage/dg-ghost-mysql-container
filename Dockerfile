@@ -1,4 +1,4 @@
-FROM ghost
+FROM ghost:0.11.7
 
 MAINTAINER Edward, eddsuarez89@gmail.com
 
